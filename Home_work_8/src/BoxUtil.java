@@ -1,5 +1,5 @@
 public class BoxUtil {
-    /*private static Box<Fruit> src2Box = new Box<>();
+    private static Box<Fruit> src2Box = new Box<>();
     private static Box<Object> srcBox = new Box<>();
     private static Box<Object> destBox = new Box<>();
     private static Box<Object> dest2Box = new Box<>();
@@ -9,37 +9,26 @@ public class BoxUtil {
     private static Apple badApple = new Apple();
     private static Fruit fruit = new Fruit();
 
-    public static void main(final String[] argc) {
-        src2Box.putToBox(apple);
-        src2Box.getFromBox().setFresh(true);
-        copyFreshFruitFromBoxToBox(src2Box, destBox);
-        System.out.println(destBox.getFromBox());
-        srcBox.putToBox(badApple);
-        src2Box.getFromBox().setFresh(false);
-        copyFreshFruitFromBoxToBox(src2Box, destBox);
-        System.out.println(destBox.getFromBox());
+    /*public static void main(final String[] argc) {
+        Box<Apple> srcBox = new Box<>();
+        Apple apple = new Apple();
+        apple.setFresh(false);
         srcBox.putToBox(apple);
-        src2Box.getFromBox().setFresh(true);
-        copyFreshFruitFromBoxToBox(src2Box, destBox);
+        Box<Object> destBox = new Box<>();
+        BoxUtil.copyFreshFruitFromBoxToBox(srcBox, destBox);
         System.out.println(destBox.getFromBox());
+        //console null
 
-        srcBox.putToBox(fruit);
-        copyElementToBox(srcBox, destBox);
-        dest2Box.putToBox(destBox);
-        dest3Box.putToBox(dest2Box);
-        srcBox.putToBox(dest3Box);
-        printElementFromTwoBoxes(srcBox);
-        printElementFromBoxes(srcBox);
 
-        //printElementFromBoxesRecursive(srcBox);
     }*/
 
     public static <T> void copyElementToBox(final Box<T> src, final Box<? super T> dest) {
         dest.putToBox(src.getFromBox());
     }
 
-    public static void copyFreshFruitFromBoxToBox(final Box<? extends Fruit> src, final Box<? super Fruit> dest) {
+    public static <T extends Fruit> void copyFreshFruitFromBoxToBox(final Box<T> src, final Box<? super T> dest) {
         try {
+
             if (src.getFromBox().getFresh()) {
                 dest.putToBox(src.getFromBox());
             }
